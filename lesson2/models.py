@@ -3,12 +3,12 @@ from django.db import models
 # Create your models here.
 
 class Book(models.Model):
-    genre = models.CharField(max_leght=100)
+    genre = models.CharField(max_length=100)
     year = models.IntegerField()
     price = models.IntegerField()
-    author = models.ForeginKey('Author', on_delete=models.CASCADE)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
 
 
 class Author(models.Model):
-    name = models.CharField(max_leght=100)
-    country = models.CharField(max_leght=100)
+    name = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)

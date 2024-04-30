@@ -1,21 +1,32 @@
+from sre_constants import SUCCESS
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from .models import Book,Author
-from django.views.generic.detail import PagesList
+from django.urls import reverse_lazy
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import DeleteView
 # Create your views here.
 
-class AuthorListView(ListView):
+class AuthorList(ListView):
     model = Author
     templates_name: str = "lesson2/author_list.html"
     contentx_object_name = "author"
 
 
-class AuthorPages(PagesList):
+class AuthorPages(DetailView):
     model = Author
-    contentx_object_name = "author"
+    context_object_name = "author"
 
 
-class AuthorCreate(CreateList):
-    model = author
+class AuthorCreate(CreateView):
+    model = Author
     fields = "__all__"
-    success 
+    template_name: str = "lesson2/author_create.html"
+    success_url = reverse_lazy('login')
+
+
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = reverse_lazy('login')
+    template_name =  "lesson2/author_create.html"
